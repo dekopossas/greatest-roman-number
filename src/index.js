@@ -8,6 +8,12 @@ const { ApolloServer, gql } = require('apollo-server');
 // Scalar Types => String, Int, Boolean, Float e ID
 
 const typeDefs = gql`
+  type User {
+    nome: String!
+    email: String!
+    active: Boolean!
+  }
+
   type Query {
     hello: String
   }
