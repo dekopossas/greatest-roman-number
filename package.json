@@ -1,0 +1,12 @@
+{
+  "name": "greatest-roman-number",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:dekopossas/greatest-roman-number.git",
+  "author": "DekoPossas <andrepossaster@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server": "^3.6.7",
+    "graphql": "^16.3.0"
+  }
+}
