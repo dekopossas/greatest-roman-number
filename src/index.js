@@ -32,9 +32,9 @@ const resolvers = {
     hello: () => 'Hello World',
     users: () => [
       { _id: String(Math.random()), name: 'John', email: 'john@example.com', active: true },
-      { _id: String(Math.random()), name: 'Deko', email: 'deko@example.com', active: true },
+      { _id: String(Math.random()), name: 'Deko', email: 'deko@example.com', active: false },
       { _id: String(Math.random()), name: 'Mina', email: 'mina@example.com', active: true },
-      { _id: String(Math.random()), name: 'Pepe', email: 'pepe@example.com', active: true },
+      { _id: String(Math.random()), name: 'Pepe', email: 'pepe@example.com', active: false },
     ],
   },
 };
