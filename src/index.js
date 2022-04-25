@@ -1,5 +1,4 @@
 const { ApolloServer, gql } = require('apollo-server');
-const { valueFromASTUntyped } = require('graphql');
 
 // Toda request é POST
 // Toda request bate no MESMO endpoint (/graphql)
@@ -52,9 +51,17 @@ const users = [
 
 const searchs = [{ _id: String(Math.random()), text: 'AXXBLX', number: 'LX', value: '60' }];
 
-const findNumber = () => {}
+const findNumber = (text) => {
+  console.log(typeof text);
+  text.split().map((letter) => console.log(typeof letter));
+};
 
-const valueNumber = () => {}
+const texto = 'conversions';
+texto.map((letter) => console.log(letter));
+
+findNumber('texto');
+
+const valueNumber = () => {};
 
 const resolvers = {
   Query: {
