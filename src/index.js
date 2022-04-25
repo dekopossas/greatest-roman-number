@@ -1,4 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
+const { valueFromASTUntyped } = require('graphql');
 
 // Toda request é POST
 // Toda request bate no MESMO endpoint (/graphql)
@@ -22,14 +23,23 @@ const typeDefs = gql`
     author: User!
   }
 
+  type Search {
+    _id: ID!
+    text: String!
+    value: String!
+    number: String!
+  }
+
   type Query {
     hello: String
     users: [User!]!
     getUserByEmail(email: String!): User!
+    searchs: [Search!]!
   }
 
   type Mutation {
     createUser(name: String!, email: String!): User!
+    createSearch(text: String!): Search!
   }
 `;
 
@@ -40,6 +50,12 @@ const users = [
   { _id: String(Math.random()), name: 'Pepe', email: 'pepe@example.com', active: false },
 ];
 
+const searchs = [{ _id: String(Math.random()), text: 'AXXBLX', number: 'LX', value: '60' }];
+
+const findNumber = () => {}
+
+const valueNumber = () => {}
+
 const resolvers = {
   Query: {
     hello: () => 'Hello World',
@@ -47,7 +63,9 @@ const resolvers = {
     getUserByEmail: (_, args) => {
       return users.find((user) => user.email === args.email);
     },
+    searchs: () => searchs,
   },
+
   Mutation: {
     createUser: (_, args) => {
       const newUser = {
@@ -59,6 +77,18 @@ const resolvers = {
 
       users.push(newUser);
       return newUser;
+    },
+
+    createSearch: (_, args) => {
+      const newSearch = {
+        _id: String(Math.random()),
+        text: args.text,
+        number: findNumber(args.text),
+        value: valueNumber(number),
+      };
+
+      searchs.push(newSearch);
+      return newSearch;
     },
   },
 };
