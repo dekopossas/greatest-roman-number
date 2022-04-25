@@ -52,14 +52,16 @@ const users = [
 const searchs = [{ _id: String(Math.random()), text: 'AXXBLX', number: 'LX', value: '60' }];
 
 const findNumber = (text) => {
-  console.log(typeof text);
-  text.split().map((letter) => console.log(typeof letter));
+  text.split('').map((letter) => {
+    console.log(letter);
+    if (letter == 'I' || 'V' || 'X' || 'L' || 'C' || 'D' || 'M') {
+      return letter;
+    }
+  });
+  return text;
 };
 
-const texto = 'conversions';
-texto.map((letter) => console.log(letter));
-
-findNumber('texto');
+console.log(findNumber('TEXTO'));
 
 const valueNumber = () => {};
 
