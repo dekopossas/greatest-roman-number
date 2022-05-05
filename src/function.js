@@ -1,7 +1,36 @@
+const groupConsecutive = (arr, textArr) => {
+  const result = arr.reduce(
+    (res, n) => {
+      if (n - res.prev === 1) {
+        return {
+          prev: n,
+          current: [...res.current, n.toString()],
+          total: res.total,
+        };
+      }
+      return {
+        prev: n,
+        current: [n.toString()],
+        total: [...res.total, res.current],
+      };
+    },
+    { prev: '', current: [], total: [] },
+  );
+
+  const final = [...result.total, result.current];
+  const letterArray = [];
+  final.forEach((arr) => {
+    const newArr = [];
+    arr.forEach((number) => {
+      newArr.push(textArr[number]);
+    });
+    letterArray.push(newArr);
+  });
+  return letterArray.flatMap((n) => n.join(''));
+};
+
 const findNumber = (text) => {
   const arrayText = text.split('');
-  // console.log('texto: ', arrayText);
-  const finalArray = [];
   const indexArray = [];
   const numberArray = [];
   const obj = {
@@ -22,15 +51,9 @@ const findNumber = (text) => {
       indexArray.push(index);
     }
   });
-  // console.log('indexArray: ', indexArray);
 
-  for (i = 0; i < indexArray.length; i++) {
-    if (indexArray[i] === indexArray[i - 1] + 1) {
-      finalArray.push(arrayText[indexArray[i - 1]] + arrayText[indexArray[i]]);
-    } else {
-      finalArray.push(arrayText[indexArray[i]]);
-    }
-  }
+  const finalArray = groupConsecutive(indexArray, arrayText);
+  // console.log(indexArray);
 
   finalArray.forEach((number) => {
     let sum = 0;
@@ -63,5 +86,3 @@ const findNumber = (text) => {
 
   return obj;
 };
-
-console.log(findNumber('AXXBLXQ'));
