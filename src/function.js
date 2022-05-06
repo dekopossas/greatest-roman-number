@@ -86,3 +86,5 @@ const findNumber = (text) => {
 
   return obj;
 };
+
+module.exports = findNumber;
